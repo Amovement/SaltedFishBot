@@ -10,12 +10,13 @@ import threading
 mutex = threading.Lock()
 
 def shoucai(hwnd):
+    time.sleep(5)
     perform_background_click(hwnd,43,345) # 收益按钮
     time.sleep(0.5)
     perform_background_click(hwnd,303,676,7) # 升级按钮
     time.sleep(0.5)
     perform_background_click(hwnd,154,669) # 领奖励按钮
-    time.sleep(1)
+    time.sleep(5)
 
 def shoucai_rountin(hwnd):
     print("收菜线程已上线...",datetime.datetime.now())
@@ -26,11 +27,11 @@ def shoucai_rountin(hwnd):
             shoucai(hwnd)
 
 def fuben_tower(hwnd):
-    time.sleep(1)
+    time.sleep(5)
     perform_background_click(hwnd,413,795) # 副本按钮
-    time.sleep(1)
+    time.sleep(5)
     perform_background_click(hwnd,225,233) # tower 按钮
-    time.sleep(1)
+    time.sleep(5)
     
     for i in range(0,10):
         perform_background_click(hwnd,238,788) # 挑战按钮
@@ -38,10 +39,11 @@ def fuben_tower(hwnd):
         perform_background_click(hwnd,51,717,3) # 跳过按钮
         time.sleep(0.5)
 
+    time.sleep(5)
     perform_background_click(hwnd,39,807,10) # 退出按钮
     time.sleep(1)
     perform_background_click(hwnd,230,792,3) # 战斗按钮
-    time.sleep(1)
+    time.sleep(5)
 
 def fuben_tower_rountin(hwnd):
     print("咸将塔线程已上线...",datetime.datetime.now())

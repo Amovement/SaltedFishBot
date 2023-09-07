@@ -5,6 +5,7 @@ import win32gui
 import win32con
 import win32api
 import time
+import win32com.client
 
 
 def get_window_handle(class_name=None, title=None):
@@ -25,6 +26,8 @@ def set_top_window(hwnd):
     """
     窗口置顶
     """
+    shell = win32com.client.Dispatch("WScript.Shell")
+    shell.SendKeys('%')
     win32gui.SetForegroundWindow(hwnd)
 
 
@@ -63,7 +66,7 @@ def show_window(hwnd):
 
 # 后台点击操作
 def perform_background_click(hwnd, x, y,cnt=1):
-    lParam = win32api.MAKELONG(x, y)
+    lParam = win32api.MAKELONG(int(x), int(y))
     count = 0
     while True:
         if count>=cnt:
@@ -71,4 +74,18 @@ def perform_background_click(hwnd, x, y,cnt=1):
         time.sleep(0.2)
         win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
         win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, 0, lParam)
+        count+=1
+        
+# 后台移动操作
+def perform_background_move(hwnd, x, y,cnt=1):
+    lParam = win32api.MAKELONG(int(x), int(y))
+    lParam1 = win32api.MAKELONG(int(x)+100, int(y))
+    count = 0
+    while True:
+        if count>=cnt:
+            break
+        time.sleep(0.2)
+        win32api.SendMessage(hwnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+        win32api.SendMessage(hwnd, win32con.WM_MOUSEMOVE, win32con.MK_LBUTTON, lParam1)
+        win32api.SendMessage(hwnd, win32con.WM_LBUTTONUP, 0, 0)
         count+=1

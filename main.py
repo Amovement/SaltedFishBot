@@ -7,7 +7,7 @@ from gaming_func import *
 from notice_func import *
 import sys,time,os
 import threading
-
+import d3dshot
 
 if __name__ == '__main__':
     # 初始化
@@ -50,6 +50,13 @@ if __name__ == '__main__':
             fuben_tower(hwnd,h,w)
         elif  cmd_input == "daily":
             daily_test(hwnd,h,w)
+        elif cmd_input =="shot":
+            show_window(hwnd)
+            screen_fullshot1(x,y,w,h)
+            # d = d3dshot.create(capture_output="numpy")
+            # d.display = d.displays[0]
+            # d.screenshot_to_disk()
+            # shot(hwnd,h,w)
         elif  cmd_input == "exit":
             print("Bye!")
             os._exit(1)

@@ -1,2 +1,9 @@
 build
 dist
+.idea/
+__pycache__/
+logs/
+venv/
+*.pyc
+*.pyo
+test.py
